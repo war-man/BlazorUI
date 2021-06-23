@@ -26,6 +26,11 @@ namespace BlazorUI.Pages
         List<DataExample> dataExamples = new List<DataExample>();
         List<DataDropdown1> dataDropdown1s = new List<DataDropdown1>();
         List<DataDropdown2> dataDropdown2s = new List<DataDropdown2>();
+        string currentChoice = String.Empty;
+        void RadioSelection(ChangeEventArgs args)
+        {
+            currentChoice = args.Value.ToString();
+        }
         private async Task<List<DataExample>> GetAllDataExamplesAsync()
         {
             dataExamples = await valueGridService.GetListData();
@@ -61,9 +66,11 @@ namespace BlazorUI.Pages
             Console.WriteLine(value: $"Current value is {e.Value}");
             IsDisabled = !e.Value.Equals("B") && !e.Value.Equals("D");
         }
-        void Dropdown2Changed()
+        void Dropdown2Changed(ChangeEventArgs e)
         {
             Console.WriteLine("Event Change Dropdown 2 Excuted");
+            Console.WriteLine(value: $"Current value is {e.Value}");
+            currentChoice = e.Value.ToString();
         }
         void DeleteGrid(DataExample data)
         {

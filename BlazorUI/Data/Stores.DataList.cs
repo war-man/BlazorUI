@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BlazorUI.Data
 {
-    public class DataStores
+    public static class DataStores
     {
         public static DataDropdown1 ValueAddSample(string data)
         {
@@ -40,11 +40,11 @@ namespace BlazorUI.Data
         public static List<DataDropdown2> SeedValue2List()
         {
             var data = new List<DataDropdown2>();
-            data.Add(new DataDropdown2() { Id = 1, Name = "1" });
-            data.Add(new DataDropdown2() { Id = 2, Name = "2" });
-            data.Add(new DataDropdown2() { Id = 3, Name = "3" });
-            data.Add(new DataDropdown2() { Id = 4, Name = "4" });
-            data.Add(new DataDropdown2() { Id = 5, Name = "5" });
+            data.Add(new DataDropdown2() { Id = 1, Name = "Select1" });
+            data.Add(new DataDropdown2() { Id = 2, Name = "Select2" });
+            data.Add(new DataDropdown2() { Id = 3, Name = "Select3" });
+            data.Add(new DataDropdown2() { Id = 4, Name = "Select4" });
+            data.Add(new DataDropdown2() { Id = 5, Name = "Select5" });
             return data;
         }
     }

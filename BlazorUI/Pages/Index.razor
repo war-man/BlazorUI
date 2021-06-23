@@ -33,17 +33,16 @@
                 <option value="-1">Select Value 2</option>
                 @foreach (var data in dataDropdown2s)
                 {
-                    <option value="@data.Id">@data.Name</option>
+                    <option value="@data.Name">@data.Id</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail2">&nbsp; ValueBinding : &nbsp;</label>
-            @foreach (var choice in new[] { Choices.Red, Choices.Green, Choices.Blue })
+            @foreach (var choice in new string[] { "Select1", "Select2", "Select3", "Select4", "Select5" })
             {
                 <label>
-                    <input style="margin:10px;"
-                           name="yourColor" type="radio"
+                    <input name="radioButtonSelect" type="radio"
                            value="@choice"
                            checked="@(currentChoice == choice)"
                            @onchange="@(() => { currentChoice = choice; })">
@@ -69,7 +68,7 @@
                                 <button class="btn btn-secondary" @onclick="() => EditGrid(data)">Edit</button>
                             </th>
                             <th>
-                                <button class="btn btn-secondary">BT1</button>
+                                <button class="btn btn-secondary" >BT1</button>
                             </th>
                         </Template>
                         <FooterTemplate>
@@ -359,24 +358,8 @@
         </RadzenTabsItem>
     </Tabs>
 </RadzenTabs>
-@foreach (var choice in new[] { Choices.Red, Choices.Green, Choices.Blue })
-{
-    <label>
-        <input name="yourColor" type="radio"
-               value="@choice"
-               checked="@(currentChoice == choice)"
-               @onchange="@(() => { currentChoice = choice; })">
-        @choice.ToString()
-    </label>
-}
-
-<p>You chose: @currentChoice</p>
 
 @code {
-
-
     protected bool IsDisabled1 { get; set; } = false;
 
-    enum Choices { Red, Green, Blue };
-    Choices currentChoice = Choices.Red;
 }
