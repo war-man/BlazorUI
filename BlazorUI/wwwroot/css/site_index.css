@@ -1,0 +1,58 @@
+﻿body:not(.rz-default-scrollbars) ::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+}
+
+.rz-grid-table td, .rz-grid-table th {
+    padding: 3px;
+}
+
+.rz-datatable-tfoot td, .rz-grid-table tfoot td {
+    padding: 3px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.rz-tabview-nav .rz-tabview-selected {
+    border-top-color: #99c5ad;
+}
+
+.rz-state-active a[role='tab'] {
+    color: #7373bb;
+}
+
+.rz-tabview-nav .rz-tabview-selected a {
+    color: #3a474d;
+}
+
+.rz-tabview-panel {
+    padding: 0;
+}
+
+.rz-datatable-thead th, .rz-grid-table thead th {
+    background-color: #e6ecef;
+}
+
+.rz-datatable-odd > td {
+    background-color: #e8fbe8;
+}
+
+.rz-grid-table-fixed .rz-datatable-even .rz-frozen-cell {
+    background: white;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 999;
+}
+
+.rz-grid-table-fixed .rz-datatable-odd .rz-frozen-cell {
+    background: #e8fbe8;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 999;
+}
+
+.rz-grid-table tfoot, .rz-grid-table tfoot td {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+}
