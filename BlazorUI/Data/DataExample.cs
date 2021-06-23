@@ -7,6 +7,9 @@ namespace BlazorUI.Data
 {
     public class DataExample
     {
+        public DataExample()
+        {
+        }
         public DataExample(int Id,string text1, string text2,string text3)
         {
             this.Id = Id;

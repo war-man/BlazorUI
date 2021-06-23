@@ -2,10 +2,9 @@
 using BlazorUI.Service;
 
 using Microsoft.AspNetCore.Components;
-
+using Radzen.Blazor;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace BlazorUI.Pages
@@ -18,10 +17,11 @@ namespace BlazorUI.Pages
         private IValue1Service value1Service { get; set; }
         [Inject]
         private IValue2Service value2Service { get; set; }
-
+        RadzenDataGrid<DataExample> grid;
         protected bool IsDisabled { get; set; }
-        private bool ShowDelete = false;
-        private bool ShowEdit = false;
+        bool IsConfirmDelete = false;
+        bool IsEditModal = false;
+        DataExample SelectedDataExample;
         protected string inputValueAddToDropdown1 { get; set; } = String.Empty;
         List<DataExample> dataExamples = new List<DataExample>();
         List<DataDropdown1> dataDropdown1s = new List<DataDropdown1>();
@@ -59,6 +59,7 @@ namespace BlazorUI.Pages
             Console.WriteLine($"Value Text: {inputValueAddToDropdown1}");
             dataDropdown1s.Add(value1Service.GetSampleDataRandom(inputValueAddToDropdown1));
             inputValueAddToDropdown1 = String.Empty;
+            StateHasChanged();
         }
         void Dropdown1Changed(ChangeEventArgs e)
         {
@@ -72,21 +73,45 @@ namespace BlazorUI.Pages
             Console.WriteLine(value: $"Current value is {e.Value}");
             currentChoice = e.Value.ToString();
         }
+
+        void ShowHideConfirmDelte() => IsConfirmDelete = !IsConfirmDelete;
+        void ShowHideOpenEditForm() => IsEditModal = !IsEditModal;
+        void No() => ShowHideConfirmDelte();
+        void NoEdit() => ShowHideOpenEditForm();
+
         void DeleteGrid(DataExample data)
         {
-            int id = data.Id;
-            ShowDelete = true;
-            Console.WriteLine(id);
+            SelectedDataExample = data;
+            ShowHideConfirmDelte();
+            Console.WriteLine(SelectedDataExample.Id);
+            StateHasChanged();
         }
-        private void DeleteShow() => ShowDelete = true;
-        private void DeleteCancel() => ShowDelete = false;
         void EditGrid(DataExample data)
         {
-            int id = data.Id;
-            string text1 = data.text1;
-            string text2 = data.text2;
-            string text3 = data.text3;
-            Console.WriteLine($"{id}-{text1}-{text2}-{text3}");
+            SelectedDataExample = data;
+            ShowHideOpenEditForm();
+            Console.WriteLine(SelectedDataExample.Id);
+            StateHasChanged();
+        }
+
+        async Task SubmitDelete()
+        {
+            Console.WriteLine($"Event delete {SelectedDataExample.Id} Started .....");
+            dataExamples.Remove(SelectedDataExample);
+            grid.Reset(true);
+            ShowHideConfirmDelte();
+            SelectedDataExample = new DataExample();
+            StateHasChanged();
+        }
+        async Task SubmitEdit()
+        {
+            Console.WriteLine($"Event Edit {SelectedDataExample.Id} Started .....");
+            var data = dataExamples.Find(x => x.Id == SelectedDataExample.Id);
+            data.text1 = SelectedDataExample.text1;
+            data.text2 = SelectedDataExample.text2;
+            data.text3 = SelectedDataExample.text3;
+            ShowHideOpenEditForm();
+            StateHasChanged();
         }
     }
 }
