@@ -78,7 +78,7 @@
         </div>
     </div>
 }
-            else { 
+            else {
 }
 @if (IsEditModal)
 {
@@ -129,7 +129,7 @@ else
             }
             else
             {
-                <RadzenDataGrid @ref="grid" Style="height: 420px" AllowColumnResize="true" FilterMode="FilterMode.Advanced" AllowPaging="false" Data="@dataExamples" TItem="DataExample" ColumnWidth="180px" LogicalFilterOperator="LogicalFilterOperator.Or">
+                <RadzenDataGrid @ref="grid" Style="height: 420px" AllowColumnResize="true" FilterMode="FilterMode.Advanced" AllowPaging="false" Data="@dataExamples" TItem="DataExample" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
                     <Columns>
                         <RadzenDataGridColumn TextAlign="TextAlign.Center" Frozen="true" Width="200px" TItem="DataExample" Property="Id" Title="Id">
                             <Template Context="data">
@@ -165,9 +165,9 @@ else
                                 <div class="border-bottom-grid"></div>
                             </FooterTemplate>
                         </RadzenDataGridColumn>
-                        <RadzenDataGridColumn TItem="DataExample" Title="text2" Width="100px" Frozen="true">
+                        <RadzenDataGridColumn TItem="DataExample" Title="text3" Width="100px" Frozen="true">
                             <Template Context="data">
-                                <RadzenLabel Style="text-align: left" Text="@data.text2"></RadzenLabel>
+                                <RadzenLabel Style="text-align: left" Text="@data.text3"></RadzenLabel>
                             </Template>
                             <FooterTemplate>
                                 <div class="border-top-grid"></div>
@@ -431,8 +431,102 @@ else
         </RadzenTabsItem>
     </Tabs>
 </RadzenTabs>
-
+<RadzenDataGrid @ref="grid" Style="height: 420px" Data="@dataExamples" TItem="DataExample" ColumnWidth="300px" AllowColumnResize="true">
+    <Columns>
+        <RadzenDataGridColumn TextAlign="TextAlign.Center" Frozen="true" Width="200px" TItem="DataExample" Property="Id" Title="Id">
+            <Template Context="data">
+                <th>
+                    <button class="btn btn-secondary" @onclick="() => DeleteGrid(data)">Delete</button>
+                </th>
+                <th>
+                    <button class="btn btn-secondary" @onclick="() => EditGrid(data)">Edit</button>
+                </th>
+                <th>
+                    <button class="btn btn-secondary">BT1</button>
+                </th>
+            </Template>
+            <FooterTemplate>
+                <div style="text-align:center" class="border-top-grid">
+                    Total
+                </div>
+                <div style="text-align:center" class="border-mid-grid">
+                    Total1
+                </div>
+                <div style="text-align:center" class="border-bottom-grid">
+                    Total2
+                </div>
+            </FooterTemplate>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="DataExample" Title="text1" Width="100px" Frozen="true">
+            <Template Context="data">
+                <RadzenLabel Style="text-align: left" Text="@data.text1"></RadzenLabel>
+            </Template>
+            <FooterTemplate>
+                <div class="border-top-grid"></div>
+                <div class="border-mid-grid"></div>
+                <div class="border-bottom-grid"></div>
+            </FooterTemplate>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="DataExample" Title="text3" Width="100px" Frozen="true">
+            <Template Context="data">
+                <RadzenLabel Style="text-align: left" Text="@data.text3"></RadzenLabel>
+            </Template>
+            <FooterTemplate>
+                <div class="border-top-grid"></div>
+                <div class="border-mid-grid"></div>
+                <div class="border-bottom-grid"></div>
+            </FooterTemplate>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="DataExample" Title="text3" Width="100px" Frozen="true">
+            <Template Context="data">
+                <RadzenLabel Style="text-align: left" Text="@data.text3"></RadzenLabel>
+            </Template>
+            <FooterTemplate>
+                <div class="border-top-grid"></div>
+                <div class="border-mid-grid"></div>
+                <div class="border-bottom-grid"></div>
+            </FooterTemplate>
+        </RadzenDataGridColumn>
+        @for (int i = 4; i < 20; i++)
+        {
+            string collumnName = $"text{i}";
+            string dataName = $"data.{collumnName}";
+            <RadzenDataGridColumn Width="100px" TextAlign="TextAlign.Center" TItem="DataExample" Title="@collumnName">
+                <Template Context="data">
+                    <RadzenLabel Style="float:right" Text="@dataName"></RadzenLabel>
+                </Template>
+                <FooterTemplate>
+                    <div class="border-top-grid"></div>
+                    <div class="border-mid-grid"></div>
+                    <div class="border-bottom-grid"></div>
+                </FooterTemplate>
+            </RadzenDataGridColumn>
+        }
+    </Columns>
+</RadzenDataGrid>
+<RadzenDataGrid Data="@dataExamples" TItem="DataExample" ColumnWidth="300px" AllowColumnResize="true">
+    <Columns>
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="text1" Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="DataExample" Title="text1" Sortable="false" Width="200px">
+            <Template Context="data">
+                <RadzenImage Path="@data.text1" style="width: 40px; height: 40px; border-radius: 8px;" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="First Name" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Last Name" Width="150px" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Title" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Title Of Courtesy" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Birth Date" FormatString="{0:d}" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Hire Date" FormatString="{0:d}" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Address" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="City" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Region" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Postal Code" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Country" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Home Phone" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Extension" />
+        <RadzenDataGridColumn TItem="DataExample" Property="text1" Title="Notes" />
+    </Columns>
+</RadzenDataGrid>
 @code {
-    protected bool IsDisabled1 { get; set; } = false;
-
 }

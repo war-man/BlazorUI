@@ -113,9 +113,11 @@
         /// <param name="e">The e<see cref="ChangeEventArgs"/>.</param>
         internal void Dropdown1Changed(ChangeEventArgs e)
         {
-            Console.WriteLine("Event Change Dropdown 1 Excuted");
-            Console.WriteLine(value: $"Current value is {e.Value}");
+            Console.WriteLine("Index.Dropdown1Changed() start");
+
             IsDisabled = !e.Value.Equals("B") && !e.Value.Equals("D");
+
+            Console.WriteLine("Index.Dropdown1Changed() end");
         }
 
         /// <summary>
@@ -124,9 +126,11 @@
         /// <param name="e">The e<see cref="ChangeEventArgs"/>.</param>
         internal void Dropdown2Changed(ChangeEventArgs e)
         {
-            Console.WriteLine("Event Change Dropdown 2 Excuted");
-            Console.WriteLine(value: $"Current value is {e.Value}");
+            Console.WriteLine("Index.Dropdown2Changed() start");
+
             currentChoice = e.Value.ToString();
+
+            Console.WriteLine("Index.Dropdown2Changed() end");
         }
         /// <summary>
         /// Event when Radio changed
@@ -134,7 +138,11 @@
         /// <param name="e">The e<see cref="ChangeEventArgs"/>.</param>
         internal void RadioSelection(ChangeEventArgs args)
         {
+            Console.WriteLine("Index.RadioSelectionChange() start");
+
             currentChoice = args.Value.ToString();
+
+            Console.WriteLine("Index.RadioSelectionChange() end");
         }
         /// <summary>
         /// Press the button Add Near by TextBox To Add Value to Dropdown1
@@ -142,7 +150,6 @@
         internal void AddToDropDown1()
         {
             Console.WriteLine("Index.BtnAdd() start");
-            Console.WriteLine("Event Add to Dropdown1 Excuted");
             Console.WriteLine($"Value Text: {inputValueAddToDropdown1}");
             dataDropdown1s.Add(value1Service.GetSampleDataRandom(inputValueAddToDropdown1));
             inputValueAddToDropdown1 = String.Empty;
@@ -167,10 +174,11 @@
         internal void DeleteGrid(DataExample data)
         {
             Console.WriteLine("Index.BtnDelete() start");
+
             SelectedDataExample = data;
             ShowHideConfirmDelte();
-            Console.WriteLine(SelectedDataExample.Id);
             StateHasChanged();
+
             Console.WriteLine("Index.BtnDelete() exit");
         }
         /// <summary>
@@ -182,10 +190,10 @@
             Console.WriteLine("Index.BtnEdit() start");
 
             SelectedDataExample = data;
+            // Call Func to change State Modal
             ShowHideOpenEditForm();
-            Console.WriteLine(SelectedDataExample.Id);
-            StateHasChanged();
 
+            StateHasChanged();
             Console.WriteLine("Index.BtnEdit() start");
         }
 
@@ -195,10 +203,15 @@
         internal void SubmitDelete()
         {
             Console.WriteLine($"Event delete {SelectedDataExample.Id} Started .....");
+
+            //Delete Select Data
             dataExamples.Remove(SelectedDataExample);
+            // Reset value inside Datagrid
             grid.Reset(true);
+            // Call Func to change State Modal
             ShowHideConfirmDelte();
             SelectedDataExample = new DataExample();
+
             StateHasChanged();
         }
 
@@ -208,11 +221,16 @@
         internal void SubmitEdit()
         {
             Console.WriteLine($"Event Edit {SelectedDataExample.Id} Started .....");
+
+            //Find Data
             var data = dataExamples.Find(x => x.Id == SelectedDataExample.Id);
+            //Update new value to Data
             data.text1 = SelectedDataExample.text1;
             data.text2 = SelectedDataExample.text2;
             data.text3 = SelectedDataExample.text3;
+            // Call Func to change State Modal
             ShowHideOpenEditForm();
+
             StateHasChanged();
         }
 
@@ -222,6 +240,7 @@
         /// <returns>The <see cref="Task{List{DataExample}}"/>.</returns>
         private async Task<List<DataExample>> GetAllDataExamplesAsync()
         {
+            //Call Func GetListData From ValueGridService
             dataExamples = await valueGridService.GetListData();
             return dataExamples;
         }
@@ -231,6 +250,7 @@
         /// </summary>
         private async Task<List<DataDropdown1>> GetAllDataDropdown1sAsync()
         {
+            //Call Func GetDropdown1Data From value1Service
             dataDropdown1s = await value1Service.GetDropdown1Data();
             return dataDropdown1s;
         }
@@ -240,6 +260,7 @@
         /// </summary>
         private async Task<List<DataDropdown2>> GetAllDataDropdown2sAsync()
         {
+            //Call Func GetDropdown2Data From value2Service
             dataDropdown2s = await value2Service.GetDropdown2Data();
             return dataDropdown2s;
         }
