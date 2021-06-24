@@ -1,19 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿/***********************************************************************/
+/* All Rights Reserved. Copyright (C) ソリマチ株式会社                 */
+/***********************************************************************/
+/* File Name    : DataDropdown1.cs                                        */
+/* Function     : DataDropdown1                                          */
+/* System Name  : Webマネジメントシステム                                */
+/* Create       : DucKhoi 2021/06/21                                    */
+/* Comment      :                                                      */
+/***********************************************************************/
 namespace BlazorUI.Data
 {
+    /// <summary>
+    /// DataDropdown1 Class
+    /// </summary>
     public class DataDropdown1
     {
+        /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
         public int Id { get; set; }
-        public string Name { get; set; }
-        public bool disable { get; set; } = false;
 
-        public override string ToString()
-        {
-            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(Name)}={Name}, {nameof(disable)}={disable.ToString()}}}";
-        }
+        /// <summary>
+        /// Gets or sets the Name.
+        /// </summary>
+        public string Name { get; set; }
     }
 }

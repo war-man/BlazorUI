@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿/***********************************************************************/
+/* All Rights Reserved. Copyright (C) ソリマチ株式会社                 */
+/***********************************************************************/
+/* File Name    : Stores.Datalist.cs                                        */
+/* Function     : DataStores                                          */
+/* System Name  : Webマネジメントシステム                                */
+/* Create       : DucKhoi 2021/06/23                                    */
+/* Comment      :                                                      */
+/***********************************************************************/
 namespace BlazorUI.Data
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// DataStores Class
+    /// </summary>
     public static class DataStores
     {
+        /// <summary>
+        /// Template Datadropdown with random value
+        /// </summary>
+        /// <param name="data">Name of value</param>
+        /// <returns>DataDropdown1</returns>
         public static DataDropdown1 ValueAddSample(string data)
         {
             Random _random = new Random();
@@ -17,6 +32,11 @@ namespace BlazorUI.Data
             };
             return dataDropdown1;
         }
+
+        /// <summary>
+        /// Seed value List DataExample to Datagrid
+        /// </summary>
+        /// <returns>List<DataExample></returns>
         public static List<DataExample> SeedDataGridList()
         {
             List<DataExample> dataExamples = new List<DataExample>();
@@ -28,15 +48,25 @@ namespace BlazorUI.Data
             }
             return dataExamples;
         }
+
+        /// <summary>
+        /// Seed value List DataDropdown1 to Dropdown1
+        /// </summary>
+        /// <returns>List<DataDropdown1></returns>
         public static List<DataDropdown1> SeedValue1List()
         {
             var data = new List<DataDropdown1>();
-            data.Add(new DataDropdown1() { Id = 1, Name = "A", disable = true });
-            data.Add(new DataDropdown1() { Id = 2, Name = "B", disable = false });
-            data.Add(new DataDropdown1() { Id = 1, Name = "C", disable = true });
-            data.Add(new DataDropdown1() { Id = 1, Name = "D", disable = false });
+            data.Add(new DataDropdown1() { Id = 1, Name = "A" });
+            data.Add(new DataDropdown1() { Id = 2, Name = "B" });
+            data.Add(new DataDropdown1() { Id = 1, Name = "C" });
+            data.Add(new DataDropdown1() { Id = 1, Name = "D" });
             return data;
         }
+
+        /// <summary>
+        /// Seed value List DataDropdown2 to Dropdown2
+        /// </summary>
+        /// <returns>List<DataDropdown2></returns>
         public static List<DataDropdown2> SeedValue2List()
         {
             var data = new List<DataDropdown2>();
